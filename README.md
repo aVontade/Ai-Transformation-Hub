@@ -1,141 +1,342 @@
-# 🚀 Welcome to Z.ai Code Scaffold
+# AI Transformation Hub
 
-A modern, production-ready web application scaffold powered by cutting-edge technologies, designed to accelerate your development with [Z.ai](https://chat.z.ai)'s AI-powered coding assistance.
+**Developed with Z.ai and finalized by Kiro**
 
-## ✨ Technology Stack
+A comprehensive AI transformation platform that helps organizations assess their AI readiness, access personalized learning pathways, and receive competitive intelligence reports with regional market analysis.
 
-This scaffold provides a robust foundation built with:
+## 🌟 Overview
 
-### 🎯 Core Framework
-- **⚡ Next.js 15** - The React framework for production with App Router
-- **📘 TypeScript 5** - Type-safe JavaScript for better developer experience
-- **🎨 Tailwind CSS 4** - Utility-first CSS framework for rapid UI development
+AI Transformation Hub is a full-stack web application designed to guide businesses through their AI transformation journey. From initial readiness assessment to detailed competitive intelligence and structured learning paths, this platform provides everything organizations need to successfully adopt and implement AI technologies.
 
-### 🧩 UI Components & Styling
-- **🧩 shadcn/ui** - High-quality, accessible components built on Radix UI
-- **🎯 Lucide React** - Beautiful & consistent icon library
-- **🌈 Framer Motion** - Production-ready motion library for React
-- **🎨 Next Themes** - Perfect dark mode in 2 lines of code
+## ✨ Key Features
 
-### 📋 Forms & Validation
-- **🎣 React Hook Form** - Performant forms with easy validation
-- **✅ Zod** - TypeScript-first schema validation
+### 🎯 AI Readiness Assessment
+- **10-Question Comprehensive Assessment** across 4 key dimensions:
+  - Strategy & Leadership
+  - Skills & Talent
+  - Data & Infrastructure
+  - Culture & Adoption
+- **Country Selection** - 25+ countries for regional analysis
+- **Industry Selection** - Enterprise and SMME (Small, Medium & Micro Enterprises) categories
+- **Instant Scoring** with detailed breakdown by category
 
-### 🔄 State Management & Data Fetching
-- **🐻 Zustand** - Simple, scalable state management
-- **🔄 TanStack Query** - Powerful data synchronization for React
-- **🌐 Axios** - Promise-based HTTP client
+### 📊 Competitive Intelligence Reports
+- **Regional Market Analysis** - Country-specific market size and growth rates
+- **Competitor Analysis** - Identify key competitors in your region
+- **Market Opportunities** - Discover AI opportunities specific to your market
+- **Strategic Recommendations** - Actionable insights with ROI projections
+- **2-Week Implementation Plans** - Day-by-day action plans
+- **Downloadable Reports** - Export your complete analysis
 
-### 🗄️ Database & Backend
-- **🗄️ Prisma** - Next-generation Node.js and TypeScript ORM
-- **🔐 NextAuth.js** - Complete open-source authentication solution
+### 📚 Personalized Learning Pathways
+Six comprehensive learning paths with detailed 2-week plans:
 
-### 🎨 Advanced UI Features
-- **📊 TanStack Table** - Headless UI for building tables and datagrids
-- **🖱️ DND Kit** - Modern drag and drop toolkit for React
-- **📊 Recharts** - Redefined chart library built with React and D3
-- **🖼️ Sharp** - High performance image processing
+1. **CEO Strategic AI Leadership** (24 hours)
+   - Competitive Intelligence & AI Market Mapping
+   - AI-First Business Model Innovation
+   - Strategic AI Investment Portfolio
 
-### 🌍 Internationalization & Utilities
-- **🌍 Next Intl** - Internationalization library for Next.js
-- **📅 Date-fns** - Modern JavaScript date utility library
-- **🪝 ReactUse** - Collection of essential React hooks for modern development
+2. **AI-Driven Revenue Generation** (26 hours)
+   - AI-Powered Customer Intelligence
+   - Revenue Optimization Through AI
+   - Innovation Pipeline Management
 
-## 🎯 Why This Scaffold?
+3. **AI Fundamentals for Managers** (16 hours)
+   - AI Literacy Basics
+   - Managing AI-Enhanced Teams
+   - AI Project Management
 
-- **🏎️ Fast Development** - Pre-configured tooling and best practices
-- **🎨 Beautiful UI** - Complete shadcn/ui component library with advanced interactions
-- **🔒 Type Safety** - Full TypeScript configuration with Zod validation
-- **📱 Responsive** - Mobile-first design principles with smooth animations
-- **🗄️ Database Ready** - Prisma ORM configured for rapid backend development
-- **🔐 Auth Included** - NextAuth.js for secure authentication flows
-- **📊 Data Visualization** - Charts, tables, and drag-and-drop functionality
-- **🌍 i18n Ready** - Multi-language support with Next Intl
-- **🚀 Production Ready** - Optimized build and deployment settings
-- **🤖 AI-Friendly** - Structured codebase perfect for AI assistance
+4. **Practical AI for Employees** (12 hours)
+   - AI Tools for Daily Work
+   - Human-AI Collaboration
+   - Data Skills for AI
 
-## 🚀 Quick Start
+5. **Healthcare AI Transformation** (20 hours)
+   - AI in Medical Diagnostics
+   - Healthcare Data Analytics
+   - AI Ethics in Healthcare
 
+6. **Financial Services AI Innovation** (18 hours)
+   - AI in Risk Assessment
+   - Algorithmic Trading Basics
+   - Fraud Detection with AI
+
+Each pathway includes:
+- ✅ Daily activities and deliverables
+- ✅ Time estimates
+- ✅ Success metrics
+- ✅ Resource recommendations
+
+### 📈 Transformation Dashboard
+- **Progress Tracking** - Monitor your AI transformation journey
+- **Quick Actions** - Easy access to assessments, learning, and analytics
+- **Recent Activity** - Track completed assessments and learning modules
+- **Business Impact Metrics** - Measure ROI, productivity gains, and skill growth
+
+### 🔐 Admin Portal
+- **Secure Authentication** - Protected admin access
+- **Consultation Management** - Track and manage consultation requests
+- **Industry Analytics** - View aggregated data across industries
+- **Report Archive** - Access all generated reports
+
+### � Consulntation Booking
+- **Request Consultation** - Schedule strategy sessions with AI experts
+- **Multiple Consultation Types** - Strategy, Implementation, ROI Analysis, Training
+- **Automated Tracking** - All requests stored and managed in admin portal
+
+## �️P Technology Stack
+
+### Frontend
+- **Next.js 15** - React framework with App Router
+- **TypeScript** - Type-safe development
+- **Tailwind CSS** - Utility-first styling
+- **Shadcn UI** - Beautiful, accessible components
+- **Lucide Icons** - Modern icon library
+
+### Backend
+- **Next.js API Routes** - Serverless API endpoints
+- **Prisma ORM** - Type-safe database access
+- **SQLite** - Embedded database (easily upgradable to PostgreSQL/MySQL)
+
+### AI Integration
+- **Z.ai SDK** - AI-powered report generation
+- **Fallback System** - Works with or without AI API
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
+
+1. **Clone the repository**
 ```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
+git clone https://github.com/aVontade/Ai-Transformation-Hub.git
+cd Ai-Transformation-Hub
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see your application running.
+2. **Install dependencies**
+```bash
+npm install
+```
 
-## 🤖 Powered by Z.ai
+3. **Set up the database**
+```bash
+npx prisma generate
+npx prisma db push
+```
 
-This scaffold is optimized for use with [Z.ai](https://chat.z.ai) - your AI assistant for:
+4. **Create environment file**
+```bash
+echo 'DATABASE_URL="file:./db/custom.db"' > .env
+```
 
-- **💻 Code Generation** - Generate components, pages, and features instantly
-- **🎨 UI Development** - Create beautiful interfaces with AI assistance  
-- **🔧 Bug Fixing** - Identify and resolve issues with intelligent suggestions
-- **📝 Documentation** - Auto-generate comprehensive documentation
-- **🚀 Optimization** - Performance improvements and best practices
+5. **Run the development server**
+```bash
+npm run dev
+```
 
-Ready to build something amazing? Start chatting with Z.ai at [chat.z.ai](https://chat.z.ai) and experience the future of AI-powered development!
+6. **Open your browser**
+```
+http://localhost:3000
+```
 
 ## 📁 Project Structure
 
 ```
-src/
-├── app/                 # Next.js App Router pages
-├── components/          # Reusable React components
-│   └── ui/             # shadcn/ui components
-├── hooks/              # Custom React hooks
-└── lib/                # Utility functions and configurations
+ai-transformation-hub/
+├── src/
+│   ├── app/
+│   │   ├── api/              # API routes
+│   │   │   ├── generate-report/
+│   │   │   ├── consultation-request/
+│   │   │   ├── get-reports/
+│   │   │   └── industry-analytics/
+│   │   ├── analytics/        # Analytics page
+│   │   ├── consultation/     # Consultation booking
+│   │   ├── reports/          # Reports archive
+│   │   ├── team/             # Team management
+│   │   ├── goals/            # Goals tracking
+│   │   └── page.tsx          # Main application
+│   ├── components/
+│   │   ├── AIReadinessAssessment.tsx
+│   │   ├── Dashboard.tsx
+│   │   ├── LearningPaths.tsx
+│   │   ├── AdminDashboard.tsx
+│   │   ├── AdminLogin.tsx
+│   │   ├── DetailedReport.tsx
+│   │   ├── ConsultationBooking.tsx
+│   │   └── ui/               # Shadcn UI components
+│   └── lib/
+│       ├── db.ts             # Database client
+│       └── utils.ts          # Utility functions
+├── prisma/
+│   └── schema.prisma         # Database schema
+├── public/
+│   └── at-logo.svg           # Application logo
+└── db/
+    └── custom.db             # SQLite database
 ```
 
-## 🎨 Available Features & Components
+## 🎨 Design Features
 
-This scaffold includes a comprehensive set of modern web development tools:
+- **Custom Logo** - Branded navigation with Ferrari-red border
+- **Dark Theme** - Professional slate color scheme
+- **Responsive Design** - Mobile-first approach
+- **Accessible Components** - WCAG compliant UI elements
+- **Modern Animations** - Smooth transitions and interactions
 
-### 🧩 UI Components (shadcn/ui)
-- **Layout**: Card, Separator, Aspect Ratio, Resizable Panels
-- **Forms**: Input, Textarea, Select, Checkbox, Radio Group, Switch
-- **Feedback**: Alert, Toast (Sonner), Progress, Skeleton
-- **Navigation**: Breadcrumb, Menubar, Navigation Menu, Pagination
-- **Overlay**: Dialog, Sheet, Popover, Tooltip, Hover Card
-- **Data Display**: Badge, Avatar, Calendar
+## 🔑 Admin Access
 
-### 📊 Advanced Data Features
-- **Tables**: Powerful data tables with sorting, filtering, pagination (TanStack Table)
-- **Charts**: Beautiful visualizations with Recharts
-- **Forms**: Type-safe forms with React Hook Form + Zod validation
+**Default Credentials:**
+- Username: `admin`
+- Password: `admin123`
 
-### 🎨 Interactive Features
-- **Animations**: Smooth micro-interactions with Framer Motion
-- **Drag & Drop**: Modern drag-and-drop functionality with DND Kit
-- **Theme Switching**: Built-in dark/light mode support
+⚠️ **Important:** Change these credentials in production!
 
-### 🔐 Backend Integration
-- **Authentication**: Ready-to-use auth flows with NextAuth.js
-- **Database**: Type-safe database operations with Prisma
-- **API Client**: HTTP requests with Axios + TanStack Query
-- **State Management**: Simple and scalable with Zustand
+## 📊 Database Schema
 
-### 🌍 Production Features
-- **Internationalization**: Multi-language support with Next Intl
-- **Image Optimization**: Automatic image processing with Sharp
-- **Type Safety**: End-to-end TypeScript with Zod validation
-- **Essential Hooks**: 100+ useful React hooks with ReactUse for common patterns
+The application uses Prisma with SQLite (easily upgradable to PostgreSQL):
 
-## 🤝 Get Started with Z.ai
+- **Users** - User accounts and profiles
+- **Assessments** - AI readiness assessment results
+- **LearningPaths** - Learning pathway definitions
+- **LearningProgress** - User learning progress tracking
+- **ConsultationRequests** - Consultation booking records
+- **ReportArchive** - Generated competitive intelligence reports
+- **IndustryAnalytics** - Aggregated industry data
 
-1. **Clone this scaffold** to jumpstart your project
-2. **Visit [chat.z.ai](https://chat.z.ai)** to access your AI coding assistant
-3. **Start building** with intelligent code generation and assistance
-4. **Deploy with confidence** using the production-ready setup
+## 🌍 Regional Features
+
+### Country Support
+25+ countries including:
+- United States, Canada
+- United Kingdom, Germany, France, Spain, Italy
+- Australia, New Zealand, Singapore
+- Japan, South Korea, China, India
+- United Arab Emirates, Saudi Arabia
+- Brazil, Mexico, Argentina
+- South Africa
+- And more...
+
+### Industry Categories
+
+**Enterprise:**
+- Healthcare
+- Finance & Banking
+- Technology
+- Manufacturing
+- Retail & E-commerce
+- Education
+- Government
+- Energy & Utilities
+- Transportation & Logistics
+
+**SMME (Small, Medium & Micro Enterprises):**
+- SMME - Healthcare
+- SMME - Finance & Banking
+- SMME - Technology
+- SMME - Manufacturing
+- SMME - Retail & E-commerce
+- SMME - Education
+- SMME - Professional Services
+- SMME - Hospitality & Tourism
+- SMME - Construction
+- SMME - Agriculture
+
+## 🔧 Configuration
+
+### Environment Variables
+
+Create a `.env` file in the root directory:
+
+```env
+DATABASE_URL="file:./db/custom.db"
+```
+
+### Optional: Z.ai Configuration
+
+For AI-powered report generation, create `.z-ai-config`:
+
+```json
+{
+  "baseUrl": "YOUR_API_BASE_URL",
+  "apiKey": "YOUR_API_KEY",
+  "chatId": "",
+  "userId": ""
+}
+```
+
+Note: The application works without Z.ai configuration using fallback data generation.
+
+## 📝 Available Scripts
+
+```bash
+# Development
+npm run dev          # Start development server on port 3000
+
+# Production
+npm run build        # Build for production
+npm run start        # Start production server
+
+# Database
+npm run db:push      # Push schema changes to database
+npm run db:generate  # Generate Prisma client
+npm run db:migrate   # Run database migrations
+npm run db:reset     # Reset database
+
+# Code Quality
+npm run lint         # Run ESLint
+```
+
+## 🚢 Deployment
+
+### Vercel (Recommended)
+
+1. Push your code to GitHub
+2. Import project in Vercel
+3. Add environment variables
+4. Deploy
+
+### Docker
+
+```bash
+npm run build
+docker build -t ai-transformation-hub .
+docker run -p 3000:3000 ai-transformation-hub
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 🙏 Acknowledgments
+
+- **Z.ai** - AI-powered development assistance
+- **Kiro** - Code finalization and optimization
+- **Shadcn UI** - Beautiful component library
+- **Vercel** - Next.js framework and hosting
+
+## 📞 Support
+
+For questions or support, please open an issue on GitHub or contact the development team.
+
+## 🗺️ Roadmap
+
+- [ ] Multi-language support
+- [ ] Advanced analytics dashboard
+- [ ] Team collaboration features
+- [ ] Integration with popular CRM systems
+- [ ] Mobile app (React Native)
+- [ ] AI chatbot assistant
+- [ ] Video learning content
+- [ ] Certification programs
 
 ---
 
-Built with ❤️ for the developer community. Supercharged by [Z.ai](https://chat.z.ai) 🚀
+**Built with ❤️ using Z.ai and Kiro**
