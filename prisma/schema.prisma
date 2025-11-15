@@ -1,0 +1,177 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String   @id @default(cuid())
+  email             String   @unique
+  name              String?
+  role              String?  // Executive, Manager, Employee, CEO
+  industry          String?  // Healthcare, Finance, Manufacturing, Technology
+  organization      String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  // Relations
+  assessments       Assessment[]
+  learningProgress  LearningProgress[]
+  roiMetrics        ROIMetric[]
+  sandboxExperiments SandboxExperiment[]
+  
+  @@map("users")
+}
+
+model Assessment {
+  id              String   @id @default(cuid())
+  userId          String
+  type            String   // Personal, Team, Organization, CEO
+  score           Float
+  dimensions      Json     // AI readiness dimensions scores
+  recommendations Json?
+  completedAt     DateTime @default(now())
+  
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("assessments")
+}
+
+model LearningPath {
+  id              String   @id @default(cuid())
+  title           String
+  description     String
+  role            String   // Executive, Manager, Employee, CEO
+  industry        String?  // Optional industry-specific paths
+  difficulty      String   // Beginner, Intermediate, Advanced
+  duration        Int      // Duration in hours
+  modules         Json     // Array of learning modules
+  outcomes        Json?    // Expected outcomes
+  
+  progress        LearningProgress[]
+  
+  @@map("learning_paths")
+}
+
+model LearningProgress {
+  id              String   @id @default(cuid())
+  userId          String
+  pathId          String
+  status          String   // Not Started, In Progress, Completed
+  completionRate  Float    @default(0)
+  timeSpent       Int      @default(0) // Time in minutes
+  lastAccessedAt  DateTime @default(now())
+  completedAt     DateTime?
+  
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  path            LearningPath @relation(fields: [pathId], references: [id])
+  
+  @@unique([userId, pathId])
+  @@map("learning_progress")
+}
+
+model ROIMetric {
+  id                String   @id @default(cuid())
+  userId            String
+  organizationId    String?
+  metricType        String   // Productivity, WagePremium, Retention, CostSavings, Revenue
+  baselineValue     Float
+  currentValue      Float
+  improvementRate   Float
+  measurementDate   DateTime @default(now())
+  notes             String?
+  
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("roi_metrics")
+}
+
+model SandboxExperiment {
+  id              String   @id @default(cuid())
+  userId          String
+  title           String
+  description     String
+  toolType        String   // PromptEngineering, AITool, Scenario
+  configuration   Json?
+  results         Json?
+  learnings       String?
+  status          String   // Draft, Running, Completed
+  createdAt       DateTime @default(now())
+  completedAt     DateTime?
+  
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("sandbox_experiments")
+}
+
+model Organization {
+  id              String   @id @default(cuid())
+  name            String
+  industry        String
+  size            String   // Small, Medium, Large, Enterprise
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@map("organizations")
+}
+
+model ConsultationRequest {
+  id              String   @id @default(cuid())
+  name            String
+  email           String
+  company         String?
+  industry        String?
+  companyUrl      String?
+  phone           String?
+  jobTitle        String?
+  consultationType String   // Strategy, Implementation, ROI Analysis, Custom
+  preferredDate    DateTime?
+  preferredTime    String?  // Morning, Afternoon, Evening
+  timezone        String?
+  message         String?
+  assessmentScore  Float?
+  reportGenerated  Boolean  @default(false)
+  status          String    @default("Pending") // Pending, Scheduled, Completed, Cancelled
+  scheduledAt     DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@map("consultation_requests")
+}
+
+model IndustryAnalytics {
+  id              String   @id @default(cuid())
+  industry        String
+  totalAssessments Int      @default(0)
+  averageScore    Float    @default(0)
+  topCompetitors   Json?    // Array of top competitors
+  commonOpportunities Json?  // Common opportunities across industry
+  commonRisks      Json?    // Common risks across industry
+  marketTrends     Json?    // Current market trends
+  lastUpdated      DateTime @default(now())
+  
+  @@unique([industry])
+  @@map("industry_analytics")
+}
+
+model ReportArchive {
+  id              String   @id @default(cuid())
+  companyName     String?
+  industry        String?
+  companyUrl      String?
+  assessmentScore  Float
+  categoryScores  Json     // Detailed category breakdown
+  reportData      Json     // Full competitive intelligence report
+  generatedAt     DateTime @default(now())
+  
+  @@map("report_archive")
+}

@@ -1,0 +1,48 @@
+const generateDetailedReport = async () => {
+    console.log("=== generateDetailedReport called ===");
+    console.log("Current isGeneratingReport state:", isGeneratingReport);
+    setIsGeneratingReport(true);
+    try {
+      const response = await fetch("/api/generate-report", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          companyInfo,
+          assessmentAnswers: answers,
+          overallScore: calculateOverallScore(),
+          categoryScores: {
+            "Strategy & Leadership": calculateScore("Strategy & Leadership"),
+            "Skills & Talent": calculateScore("Skills & Talent"),
+            "Data & Infrastructure": calculateScore("Data & Infrastructure"),
+            "Culture & Adoption": calculateScore("Culture & Adoption")
+          }
+        }),
+      });
+      
+      if (response.ok) {
+        const reportData = await response.json();
+        console.log("Report generated successfully");
+        setReportData(reportData);
+        setShowReport(true);
+        console.log("Setting isGeneratingReport to false");
+        setIsGeneratingReport(false);
+        
+        // Add fallback mechanism in case state gets stuck
+        setTimeout(() => {
+          if (isGeneratingReport) {
+            console.log("Fallback: Forcefully setting isGeneratingReport to false");
+            setIsGeneratingReport(false);
+          }
+        }, 5000);
+      } else {
+        console.error("Failed to generate report");
+      }
+    } catch (error) {
+      console.error("Error generating report:", error);
+    } finally {
+      console.log("Setting isGeneratingReport to false");
+      setIsGeneratingReport(false);
+    }
+  };
