@@ -847,6 +847,9 @@ For detailed implementation guidance, contact our AI transformation consultants.
                                   {' '}Organizations that act now can capture {reportData.executiveSummary?.growthProjection || '35% annual growth'} opportunities,
                                   while delayed adoption risks permanent competitive disadvantage.
                                 </p>
+                                <p className="text-xs text-slate-400 mt-2">
+                                  📚 See detailed sources and references in the full report below
+                                </p>
                               </div>
                             </div>
                           </div>

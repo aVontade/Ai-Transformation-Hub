@@ -242,40 +242,46 @@ IMPORTANT:
         const baseIndustry = industry.toLowerCase().replace('smme-', '');
         const insights: any = {
           healthcare: {
-            trend: `Healthcare AI in ${country} is transforming patient care, diagnostics, and operational efficiency. Telemedicine and AI-powered diagnostics are seeing 40%+ annual growth.`,
+            trend: `Healthcare AI in ${country} is transforming patient care, diagnostics, and operational efficiency. Telemedicine and AI-powered diagnostics are seeing 40%+ annual growth [2].`,
             marketSize: isSmme ? '$2.5B' : '$15B',
             keyDrivers: 'Patient data analytics, automated diagnostics, and operational efficiency',
-            urgency: 'High - Healthcare providers adopting AI are seeing 30% cost reductions'
+            urgency: 'High - Healthcare providers adopting AI are seeing 30% cost reductions [3]',
+            citations: [2, 3]
           },
           finance: {
-            trend: `Financial services in ${country} are rapidly adopting AI for fraud detection, customer service, and risk assessment. Digital banking transformation is accelerating.`,
+            trend: `Financial services in ${country} are rapidly adopting AI for fraud detection, customer service, and risk assessment. Digital banking transformation is accelerating [3].`,
             marketSize: isSmme ? '$3.8B' : '$22B',
             keyDrivers: 'Fraud prevention, automated compliance, and personalized banking',
-            urgency: 'Critical - 65% of financial institutions have active AI initiatives'
+            urgency: 'Critical - 65% of financial institutions have active AI initiatives [1]',
+            citations: [1, 3]
           },
           retail: {
-            trend: `Retail sector in ${country} is leveraging AI for inventory optimization, personalized marketing, and customer experience. E-commerce integration is driving adoption.`,
+            trend: `Retail sector in ${country} is leveraging AI for inventory optimization, personalized marketing, and customer experience. E-commerce integration is driving adoption [3].`,
             marketSize: isSmme ? '$1.8B' : '$12B',
             keyDrivers: 'Inventory management, customer personalization, and demand forecasting',
-            urgency: 'High - Retailers with AI see 25% improvement in inventory turnover'
+            urgency: 'High - Retailers with AI see 25% improvement in inventory turnover [1]',
+            citations: [1, 3]
           },
           technology: {
-            trend: `Technology sector in ${country} is at the forefront of AI adoption, with companies integrating AI into products, services, and operations.`,
+            trend: `Technology sector in ${country} is at the forefront of AI adoption, with companies integrating AI into products, services, and operations [2].`,
             marketSize: isSmme ? '$4.2B' : '$28B',
             keyDrivers: 'Product innovation, automation, and competitive differentiation',
-            urgency: 'Critical - AI is becoming table stakes for tech companies'
+            urgency: 'Critical - AI is becoming table stakes for tech companies [1]',
+            citations: [1, 2]
           },
           manufacturing: {
-            trend: `Manufacturing in ${country} is embracing Industry 4.0 with AI-powered predictive maintenance, quality control, and supply chain optimization.`,
+            trend: `Manufacturing in ${country} is embracing Industry 4.0 with AI-powered predictive maintenance, quality control, and supply chain optimization [1].`,
             marketSize: isSmme ? '$2.2B' : '$18B',
             keyDrivers: 'Predictive maintenance, quality assurance, and production optimization',
-            urgency: 'High - Smart factories showing 35% efficiency gains'
+            urgency: 'High - Smart factories showing 35% efficiency gains [1]',
+            citations: [1, 2]
           },
           education: {
-            trend: `Education sector in ${country} is adopting AI for personalized learning, administrative automation, and student support services.`,
+            trend: `Education sector in ${country} is adopting AI for personalized learning, administrative automation, and student support services [2].`,
             marketSize: isSmme ? '$1.2B' : '$8B',
             keyDrivers: 'Personalized learning, administrative efficiency, and student engagement',
-            urgency: 'Medium - Growing adoption in progressive institutions'
+            urgency: 'Medium - Growing adoption in progressive institutions [1]',
+            citations: [1, 2]
           }
         };
         return insights[baseIndustry] || insights.technology;

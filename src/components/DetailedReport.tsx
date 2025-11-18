@@ -229,7 +229,17 @@ For detailed implementation guidance, contact our AI transformation consultants.
               <div>
                 <h3 className="font-semibold text-white mb-3">{companyInfo?.industry} AI Trends in {companyInfo?.country}</h3>
                 <p className="text-sm text-white mb-4">
-                  {reportData.executiveSummary?.globalTrends}
+                  {reportData.executiveSummary?.globalTrends?.split('[').map((part: string, i: number) => {
+                    if (i === 0) return part;
+                    const citationNum = part.match(/^(\d+)\]/)?.[1];
+                    const restOfText = part.replace(/^\d+\]/, '');
+                    return (
+                      <span key={i}>
+                        <sup className="text-blue-300 font-bold cursor-help" title="See Sources & References section">[{citationNum}]</sup>
+                        {restOfText}
+                      </span>
+                    );
+                  })}
                 </p>
                 
                 {reportData.executiveSummary?.keyDrivers && (
@@ -245,7 +255,19 @@ For detailed implementation guidance, contact our AI transformation consultants.
                   <div>
                     <h4 className="font-medium text-white mb-2">Urgency Assessment</h4>
                     <div className="bg-orange-50 p-3 rounded border-l-4 border-orange-500">
-                      <p className="text-sm text-orange-900">{reportData.executiveSummary.urgency}</p>
+                      <p className="text-sm text-orange-900">
+                        {reportData.executiveSummary.urgency.split('[').map((part: string, i: number) => {
+                          if (i === 0) return part;
+                          const citationNum = part.match(/^(\d+)\]/)?.[1];
+                          const restOfText = part.replace(/^\d+\]/, '');
+                          return (
+                            <span key={i}>
+                              <sup className="text-orange-600 font-bold cursor-help" title="See Sources & References section">[{citationNum}]</sup>
+                              {restOfText}
+                            </span>
+                          );
+                        })}
+                      </p>
                     </div>
                   </div>
                 )}
@@ -767,18 +789,29 @@ For detailed implementation guidance, contact our AI transformation consultants.
                 Sources & References
               </CardTitle>
               <CardDescription>
-                Industry research and data sources supporting this analysis
+                Industry research and data sources supporting this analysis. Numbers in brackets [1], [2], etc. throughout the report refer to these sources.
               </CardDescription>
             </CardHeader>
             <CardContent>
+              <div className="mb-4 p-3 bg-blue-50 border-l-4 border-blue-500 rounded">
+                <p className="text-sm text-blue-900">
+                  <strong>📖 How to use citations:</strong> Throughout this report, you'll see numbers in brackets like <sup className="text-blue-600 font-bold">[1]</sup> or <sup className="text-blue-600 font-bold">[2]</sup>. 
+                  These refer to the numbered sources below. Hover over any citation to see a tooltip, or scroll to the source for full details.
+                </p>
+              </div>
               <div className="space-y-4">
                 {reportData.sources.map((source: any, index: number) => (
-                  <div key={index} className="border-l-4 border-blue-500 pl-4 py-2 bg-slate-50 rounded">
+                  <div key={index} id={`source-${index + 1}`} className="border-l-4 border-blue-500 pl-4 py-2 bg-slate-50 rounded scroll-mt-20">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <h4 className="font-semibold text-slate-900 mb-1">
-                          {source.title}
-                        </h4>
+                        <div className="flex items-start gap-2 mb-1">
+                          <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold flex-shrink-0">
+                            {index + 1}
+                          </span>
+                          <h4 className="font-semibold text-slate-900">
+                            {source.title}
+                          </h4>
+                        </div>
                         <p className="text-sm text-slate-600 mb-2">
                           {source.organization} • {source.year}
                         </p>
