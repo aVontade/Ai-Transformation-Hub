@@ -1061,9 +1061,19 @@ export default function LearningPathsPage() {
         </div>
 
         <Tabs defaultValue="enrolled" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="enrolled">My Learning Paths</TabsTrigger>
-            <TabsTrigger value="available">Available Paths</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2 border-2 border-[#DC0000] bg-white p-1">
+            <TabsTrigger 
+              value="enrolled" 
+              className="data-[state=active]:bg-[#DC0000] data-[state=active]:text-white font-semibold"
+            >
+              My Learning Paths
+            </TabsTrigger>
+            <TabsTrigger 
+              value="available"
+              className="data-[state=active]:bg-[#DC0000] data-[state=active]:text-white font-semibold"
+            >
+              Available Paths
+            </TabsTrigger>
           </TabsList>
 
           {/* Enrolled Learning Paths */}
