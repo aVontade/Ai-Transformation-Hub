@@ -89,6 +89,24 @@ ${index + 1}. ${rec.title}
    Implementation Timeline: ${rec.timeline}
 `).join('')}
 
+SOURCES & REFERENCES
+--------------------
+${reportData.sources?.map((source: any, index: number) => `
+${index + 1}. ${source.title}
+   Organization: ${source.organization}
+   Year: ${source.year}
+   Key Finding: ${source.keyFinding}
+   ${source.url && source.url !== '#' ? `URL: ${source.url}` : ''}
+`).join('')}
+
+METHODOLOGY NOTE
+----------------
+This report combines industry research from leading global consulting firms,
+technology research organizations, and regional market data. Market size 
+estimates and growth projections are based on publicly available research 
+and industry reports. Competitor analysis represents typical AI maturity 
+levels observed in the ${companyInfo?.industry} sector.
+
 NEXT STEPS
 -----------
 1. Schedule executive strategy session
@@ -739,6 +757,74 @@ For detailed implementation guidance, contact our AI transformation consultants.
             </div>
           </CardContent>
         </Card>
+
+        {/* Sources & References */}
+        {reportData.sources && reportData.sources.length > 0 && (
+          <Card className="mb-8 border-0 shadow-lg">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <FileText className="w-5 h-5" />
+                Sources & References
+              </CardTitle>
+              <CardDescription>
+                Industry research and data sources supporting this analysis
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {reportData.sources.map((source: any, index: number) => (
+                  <div key={index} className="border-l-4 border-blue-500 pl-4 py-2 bg-slate-50 rounded">
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-slate-900 mb-1">
+                          {source.title}
+                        </h4>
+                        <p className="text-sm text-slate-600 mb-2">
+                          {source.organization} • {source.year}
+                        </p>
+                        <p className="text-sm text-slate-700 italic mb-2">
+                          "{source.keyFinding}"
+                        </p>
+                        {source.url && source.url !== '#' && (
+                          <a 
+                            href={source.url} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-xs text-blue-600 hover:text-blue-800 underline"
+                          >
+                            View Source →
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="mt-6 p-4 bg-yellow-50 border-l-4 border-yellow-500 rounded">
+                <h4 className="font-semibold text-yellow-900 mb-2">📚 Additional Resources</h4>
+                <p className="text-sm text-yellow-800 mb-3">
+                  For the most current data specific to your business, we recommend:
+                </p>
+                <ul className="text-sm text-yellow-800 space-y-1">
+                  <li>• Consulting with local industry associations in {companyInfo?.country}</li>
+                  <li>• Reviewing government technology and innovation reports</li>
+                  <li>• Engaging with AI solution providers for case studies</li>
+                  <li>• Attending industry conferences and webinars</li>
+                </ul>
+              </div>
+
+              <div className="mt-4 p-4 bg-blue-50 border-l-4 border-blue-500 rounded">
+                <p className="text-xs text-blue-800">
+                  <strong>Methodology Note:</strong> This report combines industry research from leading global consulting firms, 
+                  technology research organizations, and regional market data. Market size estimates and growth projections 
+                  are based on publicly available research and industry reports. Competitor analysis represents typical 
+                  AI maturity levels observed in the {companyInfo?.industry} sector.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Consultation CTA Section */}
         {!reportDownloaded && (

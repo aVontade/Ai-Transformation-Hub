@@ -822,9 +822,9 @@ For detailed implementation guidance, contact our AI transformation consultants.
                               <div className="text-slate-300">
                                 <h4 className="font-medium text-white mb-2">Regional Market Analysis ({companyInfo.country}):</h4>
                                 <p className="text-sm leading-relaxed">
-                                  The {companyInfo.industry} sector in {companyInfo.country} is experiencing rapid AI transformation with 
-                                  {reportData.executiveSummary?.regionalMarketSize || reportData.executiveSummary?.marketSize || '$500B'} market opportunity by 2025. 
-                                  Your organization's AI readiness score of {reportData.overallScore || overallScore}% 
+                                  {reportData.executiveSummary?.globalTrends || `The ${companyInfo.industry} sector in ${companyInfo.country} is experiencing rapid AI transformation.`}
+                                  {' '}Market opportunity: {reportData.executiveSummary?.regionalMarketSize || reportData.executiveSummary?.marketSize || '$500B by 2027'}.
+                                  {' '}Your organization's AI readiness score of {reportData.overallScore || overallScore}% 
                                   {overallScore >= 75 ? ' positions you as an AI leader' : 
                                    overallScore >= 50 ? ' indicates strong potential for growth' : 
                                    ' suggests immediate action is required'} to remain competitive in the {companyInfo.country} market.
@@ -843,8 +843,8 @@ For detailed implementation guidance, contact our AI transformation consultants.
                               <div className="text-slate-300">
                                 <h4 className="font-medium text-white mb-2">Strategic Imperative:</h4>
                                 <p className="text-sm leading-relaxed">
-                                  {reportData.executiveSummary?.globalTrends || 'Global AI adoption is accelerating across all industries with significant regional variations in maturity and implementation approaches.'}
-                                  Organizations that act now can capture {reportData.executiveSummary?.growthProjection || '35%'} of market growth,
+                                  {reportData.executiveSummary?.urgency || 'AI adoption is critical for maintaining competitive advantage in your industry.'}
+                                  {' '}Organizations that act now can capture {reportData.executiveSummary?.growthProjection || '35% annual growth'} opportunities,
                                   while delayed adoption risks permanent competitive disadvantage.
                                 </p>
                               </div>
