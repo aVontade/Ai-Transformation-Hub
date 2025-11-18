@@ -287,11 +287,11 @@ For detailed implementation guidance, contact our AI transformation consultants.
           <CardContent>
             <div className="space-y-4">
               {reportData.competitorAnalysis?.map((competitor: any, index: number) => (
-                <div key={index} className="border border-slate-200 rounded-lg p-4">
+                <div key={index} className="border border-slate-200 rounded-lg p-4 bg-white">
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
-                        <h3 className="font-semibold text-lg text-white">{competitor.name}</h3>
+                        <h3 className="font-semibold text-lg text-slate-900">{competitor.name}</h3>
                         <Badge className="bg-blue-100 text-blue-800 text-sm">
                           {competitor.region}
                         </Badge>
@@ -299,19 +299,19 @@ For detailed implementation guidance, contact our AI transformation consultants.
                           AI Maturity: {competitor.aiMaturity}
                         </Badge>
                       </div>
-                      <p className="text-white mb-3">{competitor.description}</p>
+                      <p className="text-slate-700 mb-3">{competitor.description}</p>
                       <div className="grid md:grid-cols-2 gap-4">
                         <div>
-                          <h4 className="font-medium text-white mb-2">Market Share in {companyInfo?.country}:</h4>
-                          <p className="text-sm text-white">{competitor.marketShare || 'N/A'}</p>
+                          <h4 className="font-medium text-slate-900 mb-2">Market Share in {companyInfo?.country}:</h4>
+                          <p className="text-sm text-slate-700">{competitor.marketShare || 'N/A'}</p>
                         </div>
                         <div>
-                          <h4 className="font-medium text-white mb-2">Regional Presence:</h4>
-                          <p className="text-sm text-white">{competitor.regionalPresence || competitor.regionalStrength || 'Active in the region'}</p>
+                          <h4 className="font-medium text-slate-900 mb-2">Regional Presence:</h4>
+                          <p className="text-sm text-slate-700">{competitor.regionalPresence || competitor.regionalStrength || 'Active in the region'}</p>
                         </div>
                         {competitor.technologyStack && (
                           <div className="md:col-span-2">
-                            <h4 className="font-medium text-white mb-2">Technology Stack:</h4>
+                            <h4 className="font-medium text-slate-900 mb-2">Technology Stack:</h4>
                             <div className="flex flex-wrap gap-1">
                               {competitor.technologyStack?.map((tech: string, i: number) => (
                                 <Badge key={i} variant="secondary" className="text-xs">
@@ -324,18 +324,18 @@ For detailed implementation guidance, contact our AI transformation consultants.
                       </div>
                     </div>
                     <div className="text-right ml-4">
-                      <div className="text-sm text-white mb-2">Threat Level</div>
+                      <div className="text-sm text-slate-600 mb-2">Threat Level</div>
                       <Badge className={getRiskColor(competitor.threatLevel)} variant="outline">
                         {competitor.threatLevel}
                       </Badge>
                     </div>
                   </div>
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid md:grid-cols-2 gap-4 mb-4">
                     <div>
-                      <h4 className="font-medium text-white mb-2">Key AI Initiatives:</h4>
+                      <h4 className="font-medium text-slate-900 mb-2">Key AI Initiatives:</h4>
                       <ul className="space-y-1">
                         {competitor.initiatives?.map((initiative: string, i: number) => (
-                          <li key={i} className="flex items-center gap-2 text-sm text-white">
+                          <li key={i} className="flex items-center gap-2 text-sm text-slate-700">
                             <div className="w-1.5 h-1.5 bg-primary rounded-full" />
                             {initiative}
                           </li>
@@ -344,9 +344,263 @@ For detailed implementation guidance, contact our AI transformation consultants.
                     </div>
                     <div>
                       <h4 className="font-medium text-blue-600 mb-2">Market Position:</h4>
-                      <p className="text-sm text-white">{competitor.marketPosition}</p>
+                      <p className="text-sm text-slate-700">{competitor.marketPosition}</p>
                     </div>
                   </div>
+
+                  {/* SMME-Friendly Insights */}
+                  {competitor.whatThisMeans && (
+                    <div className="mt-4 p-4 bg-blue-50 border-l-4 border-blue-500 rounded">
+                      <h4 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
+                        <Target className="w-4 h-4" />
+                        What This Means for Your Business
+                      </h4>
+                      <p className="text-sm text-blue-800 whitespace-pre-line">{competitor.whatThisMeans}</p>
+                    </div>
+                  )}
+
+                  {/* Actionable Steps */}
+                  {competitor.actionableSteps && competitor.actionableSteps.length > 0 && (
+                    <div className="mt-3 p-4 bg-green-50 border-l-4 border-green-500 rounded">
+                      <h4 className="font-semibold text-green-900 mb-2 flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4" />
+                        Actionable Steps You Can Take
+                      </h4>
+                      <ul className="space-y-2">
+                        {competitor.actionableSteps.map((step: string, i: number) => (
+                          <li key={i} className="flex items-start gap-2 text-sm text-green-800">
+                            <span className="font-bold text-green-600 mt-0.5">{i + 1}.</span>
+                            <span>{step}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Budget Guidance for SMMEs */}
+                  {competitor.budgetGuidance && (
+                    <div className="mt-3 p-4 bg-purple-50 border-l-4 border-purple-500 rounded">
+                      <h4 className="font-semibold text-purple-900 mb-3 flex items-center gap-2">
+                        <Zap className="w-4 h-4" />
+                        Budget-Friendly AI Options
+                      </h4>
+                      <div className="space-y-2 text-sm">
+                        <div className="flex items-start gap-2">
+                          <Badge className="bg-green-100 text-green-800 text-xs">Starter</Badge>
+                          <span className="text-purple-800">{competitor.budgetGuidance.starter}</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <Badge className="bg-blue-100 text-blue-800 text-xs">Intermediate</Badge>
+                          <span className="text-purple-800">{competitor.budgetGuidance.intermediate}</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <Badge className="bg-purple-100 text-purple-800 text-xs">Advanced</Badge>
+                          <span className="text-purple-800">{competitor.budgetGuidance.advanced}</span>
+                        </div>
+                        <p className="text-xs text-purple-700 mt-2 italic">{competitor.budgetGuidance.note}</p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Quick Wins */}
+                  {competitor.quickWins && competitor.quickWins.length > 0 && (
+                    <div className="mt-3 p-4 bg-yellow-50 border-l-4 border-yellow-500 rounded">
+                      <h4 className="font-semibold text-yellow-900 mb-2 flex items-center gap-2">
+                        <Award className="w-4 h-4" />
+                        Quick Wins - Start This Week
+                      </h4>
+                      <ul className="space-y-1">
+                        {competitor.quickWins.map((win: string, i: number) => (
+                          <li key={i} className="flex items-center gap-2 text-sm text-yellow-800">
+                            <div className="w-1.5 h-1.5 bg-yellow-600 rounded-full" />
+                            {win}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Market Opportunities */}
+        <Card className="mb-8 border-0 shadow-lg">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <TrendingUp className="w-5 h-5" />
+              AI Opportunities for Your Business
+            </CardTitle>
+            <CardDescription>
+              Practical AI opportunities ranked by impact and ease of implementation
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-2 gap-4">
+              {reportData.opportunities?.map((opportunity: any, index: number) => (
+                <div key={index} className="border border-slate-200 rounded-lg p-4 bg-white hover:shadow-md transition-shadow">
+                  <div className="flex items-start justify-between mb-3">
+                    <h3 className="font-semibold text-lg text-slate-900">{opportunity.title}</h3>
+                    <Badge className={
+                      opportunity.impact === 'High' ? 'bg-green-100 text-green-800' :
+                      opportunity.impact === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
+                      'bg-blue-100 text-blue-800'
+                    }>
+                      {opportunity.impact} Impact
+                    </Badge>
+                  </div>
+                  <p className="text-sm text-slate-700 mb-3">{opportunity.description}</p>
+                  
+                  <div className="grid grid-cols-2 gap-3 mb-3 text-sm">
+                    <div>
+                      <span className="font-medium text-slate-600">Timeline:</span>
+                      <p className="text-slate-900">{opportunity.timeline}</p>
+                    </div>
+                    <div>
+                      <span className="font-medium text-slate-600">Investment:</span>
+                      <p className="text-slate-900">{opportunity.investment}</p>
+                    </div>
+                  </div>
+
+                  {opportunity.smmeExample && (
+                    <div className="mt-3 p-3 bg-blue-50 rounded border-l-4 border-blue-500">
+                      <h4 className="font-semibold text-blue-900 text-sm mb-1">Real SMME Success Story</h4>
+                      <p className="text-xs text-blue-800">{opportunity.smmeExample}</p>
+                    </div>
+                  )}
+
+                  {opportunity.toolSuggestions && opportunity.toolSuggestions.length > 0 && (
+                    <div className="mt-3">
+                      <h4 className="font-semibold text-slate-900 text-sm mb-2">Recommended Tools:</h4>
+                      <ul className="space-y-1">
+                        {opportunity.toolSuggestions.map((tool: string, i: number) => (
+                          <li key={i} className="text-xs text-slate-700 flex items-start gap-2">
+                            <Zap className="w-3 h-3 text-blue-500 mt-0.5 flex-shrink-0" />
+                            <span>{tool}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Strategic Recommendations */}
+        <Card className="mb-8 border-0 shadow-lg">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Brain className="w-5 h-5" />
+              Strategic Recommendations
+            </CardTitle>
+            <CardDescription>
+              Step-by-step guidance for successful AI adoption
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {reportData.recommendations?.map((rec: any, index: number) => (
+                <div key={index} className="border border-slate-200 rounded-lg p-4 bg-white">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-2">
+                        <h3 className="font-semibold text-lg text-slate-900">{rec.title}</h3>
+                        <Badge className={
+                          rec.priority === 'High' ? 'bg-red-100 text-red-800' :
+                          rec.priority === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
+                          'bg-blue-100 text-blue-800'
+                        }>
+                          {rec.priority} Priority
+                        </Badge>
+                      </div>
+                      <p className="text-sm text-slate-700 mb-3">{rec.description}</p>
+                      
+                      <div className="grid md:grid-cols-3 gap-3 text-sm">
+                        <div>
+                          <span className="font-medium text-slate-600">Expected ROI:</span>
+                          <p className="text-green-600 font-semibold">{rec.expectedRoi}</p>
+                        </div>
+                        <div>
+                          <span className="font-medium text-slate-600">Timeline:</span>
+                          <p className="text-slate-900">{rec.timeline}</p>
+                        </div>
+                        {rec.budgetNote && (
+                          <div>
+                            <span className="font-medium text-slate-600">Budget:</span>
+                            <p className="text-slate-900">{rec.budgetNote}</p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {rec.firstSteps && rec.firstSteps.length > 0 && (
+                    <div className="mt-4 p-3 bg-green-50 rounded border-l-4 border-green-500">
+                      <h4 className="font-semibold text-green-900 text-sm mb-2 flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4" />
+                        First Steps to Take
+                      </h4>
+                      <ul className="space-y-1">
+                        {rec.firstSteps.map((step: string, i: number) => (
+                          <li key={i} className="text-xs text-green-800 flex items-start gap-2">
+                            <span className="font-bold text-green-600">{i + 1}.</span>
+                            <span>{step}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {rec.freeAiTools && rec.freeAiTools.length > 0 && (
+                    <div className="mt-3 p-3 bg-purple-50 rounded border-l-4 border-purple-500">
+                      <h4 className="font-semibold text-purple-900 text-sm mb-2 flex items-center gap-2">
+                        <Award className="w-4 h-4" />
+                        Free & Low-Cost AI Tools
+                      </h4>
+                      <ul className="space-y-1">
+                        {rec.freeAiTools.map((tool: string, i: number) => (
+                          <li key={i} className="text-xs text-purple-800 flex items-start gap-2">
+                            <Zap className="w-3 h-3 text-purple-600 mt-0.5 flex-shrink-0" />
+                            <span>{tool}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {rec.learningResources && rec.learningResources.length > 0 && (
+                    <div className="mt-3 p-3 bg-blue-50 rounded border-l-4 border-blue-500">
+                      <h4 className="font-semibold text-blue-900 text-sm mb-2">Learning Resources (Free)</h4>
+                      <ul className="space-y-1">
+                        {rec.learningResources.map((resource: string, i: number) => (
+                          <li key={i} className="text-xs text-blue-800 flex items-start gap-2">
+                            <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-1.5 flex-shrink-0" />
+                            <span>{resource}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {rec.metricsToTrack && rec.metricsToTrack.length > 0 && (
+                    <div className="mt-3 p-3 bg-yellow-50 rounded border-l-4 border-yellow-500">
+                      <h4 className="font-semibold text-yellow-900 text-sm mb-2">Key Metrics to Track</h4>
+                      <ul className="space-y-1">
+                        {rec.metricsToTrack.map((metric: string, i: number) => (
+                          <li key={i} className="text-xs text-yellow-800 flex items-start gap-2">
+                            <BarChart3 className="w-3 h-3 text-yellow-600 mt-0.5 flex-shrink-0" />
+                            <span>{metric}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      {rec.exampleRoi && (
+                        <p className="text-xs text-yellow-900 mt-2 font-medium italic">{rec.exampleRoi}</p>
+                      )}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
