@@ -129,13 +129,13 @@ export default function Home() {
             Unexpected AI Success Stories
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
+            <Card className="border-2 border-red-500 shadow-lg hover:shadow-xl transition-shadow bg-slate-800">
               <CardHeader>
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-green-100 rounded-lg">
                     <TrendingUp className="w-6 h-6 text-green-600" />
                   </div>
-                  <CardTitle className="text-xl">Steel Manufacturing Revolution</CardTitle>
+                  <CardTitle className="text-xl text-white">Steel Manufacturing Revolution</CardTitle>
                 </div>
               </CardHeader>
               <CardContent>
@@ -151,13 +151,13 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
+            <Card className="border-2 border-red-500 shadow-lg hover:shadow-xl transition-shadow bg-slate-800">
               <CardHeader>
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-blue-100 rounded-lg">
                     <Users className="w-6 h-6 text-blue-600" />
                   </div>
-                  <CardTitle className="text-xl">Healthcare Diagnostic Breakthrough</CardTitle>
+                  <CardTitle className="text-xl text-white">Healthcare Diagnostic Breakthrough</CardTitle>
                 </div>
               </CardHeader>
               <CardContent>
@@ -173,13 +173,13 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
+            <Card className="border-2 border-red-500 shadow-lg hover:shadow-xl transition-shadow bg-slate-800">
               <CardHeader>
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-purple-100 rounded-lg">
                     <Target className="w-6 h-6 text-purple-600" />
                   </div>
-                  <CardTitle className="text-xl">Retail Supply Chain Transformation</CardTitle>
+                  <CardTitle className="text-xl text-white">Retail Supply Chain Transformation</CardTitle>
                 </div>
               </CardHeader>
               <CardContent>
@@ -195,13 +195,13 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
+            <Card className="border-2 border-red-500 shadow-lg hover:shadow-xl transition-shadow bg-slate-800">
               <CardHeader>
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-orange-100 rounded-lg">
                     <Zap className="w-6 h-6 text-orange-600" />
                   </div>
-                  <CardTitle className="text-xl">Financial Services Automation</CardTitle>
+                  <CardTitle className="text-xl text-white">Financial Services Automation</CardTitle>
                 </div>
               </CardHeader>
               <CardContent>
