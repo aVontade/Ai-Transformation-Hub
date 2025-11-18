@@ -209,32 +209,28 @@ For detailed implementation guidance, contact our AI transformation consultants.
           <CardContent>
             <div className="grid md:grid-cols-2 gap-6 mb-6">
               <div>
-                <h3 className="font-semibold text-white mb-3">Global AI Trends</h3>
+                <h3 className="font-semibold text-white mb-3">{companyInfo?.industry} AI Trends in {companyInfo?.country}</h3>
                 <p className="text-sm text-white mb-4">
                   {reportData.executiveSummary?.globalTrends}
                 </p>
                 
-                <h4 className="font-medium text-white mb-2">Regional Comparisons</h4>
-                <div className="space-y-3">
-                  <div className="border-l-4 border-blue-500 pl-3">
-                    <h5 className="font-medium text-blue-700">North America</h5>
-                    <p className="text-sm text-white">
-                      {reportData.executiveSummary?.regionalComparisons?.northAmerica}
-                    </p>
+                {reportData.executiveSummary?.keyDrivers && (
+                  <div className="mb-4">
+                    <h4 className="font-medium text-white mb-2">Key AI Drivers</h4>
+                    <div className="bg-blue-50 p-3 rounded border-l-4 border-blue-500">
+                      <p className="text-sm text-blue-900">{reportData.executiveSummary.keyDrivers}</p>
+                    </div>
                   </div>
-                  <div className="border-l-4 border-green-500 pl-3">
-                    <h5 className="font-medium text-green-700">Europe</h5>
-                    <p className="text-sm text-white">
-                      {reportData.executiveSummary?.regionalComparisons?.europe}
-                    </p>
+                )}
+
+                {reportData.executiveSummary?.urgency && (
+                  <div>
+                    <h4 className="font-medium text-white mb-2">Urgency Assessment</h4>
+                    <div className="bg-orange-50 p-3 rounded border-l-4 border-orange-500">
+                      <p className="text-sm text-orange-900">{reportData.executiveSummary.urgency}</p>
+                    </div>
                   </div>
-                  <div className="border-l-4 border-purple-500 pl-3">
-                    <h5 className="font-medium text-purple-700">Asia-Pacific</h5>
-                    <p className="text-sm text-white">
-                      {reportData.executiveSummary?.regionalComparisons?.asiaPacific}
-                    </p>
-                  </div>
-                </div>
+                )}
               </div>
               
               <div>
@@ -244,13 +240,13 @@ For detailed implementation guidance, contact our AI transformation consultants.
                     <div className="text-2xl font-bold text-blue-600 mb-1">
                       {reportData.executiveSummary?.regionalMarketSize || reportData.executiveSummary?.marketSize}
                     </div>
-                    <p className="text-sm text-white">{companyInfo?.country} Market Size by 2025</p>
+                    <p className="text-sm text-white">{companyInfo?.country} Market Size</p>
                   </div>
                   <div className="bg-green-50 p-4 rounded-lg">
                     <div className="text-2xl font-bold text-green-600 mb-1">
                       {reportData.executiveSummary?.regionalGrowthRate || reportData.executiveSummary?.growthProjection}
                     </div>
-                    <p className="text-sm text-white">Regional CAGR through 2030</p>
+                    <p className="text-sm text-white">Regional Growth Rate</p>
                   </div>
                   <div className="bg-purple-50 p-4 rounded-lg">
                     <h4 className="font-medium text-purple-900 mb-2">Competitor Landscape</h4>
@@ -283,6 +279,13 @@ For detailed implementation guidance, contact our AI transformation consultants.
             <CardDescription>
               AI maturity and initiatives of key competitors in {companyInfo?.country}
             </CardDescription>
+            {reportData.executiveSummary?.disclaimer && (
+              <div className="mt-3 p-3 bg-blue-50 border-l-4 border-blue-500 rounded">
+                <p className="text-sm text-blue-800">
+                  <strong>ℹ️ About These Competitors:</strong> {reportData.executiveSummary.disclaimer}
+                </p>
+              </div>
+            )}
           </CardHeader>
           <CardContent>
             <div className="space-y-4">

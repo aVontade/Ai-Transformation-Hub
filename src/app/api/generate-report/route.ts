@@ -237,15 +237,66 @@ IMPORTANT:
       const competitors = getCompetitorNames(companyInfo.industry);
       const isSmme = companyInfo.industry.toLowerCase().includes('smme');
       
+      // Industry-specific insights
+      const getIndustryInsights = (industry: string, country: string) => {
+        const baseIndustry = industry.toLowerCase().replace('smme-', '');
+        const insights: any = {
+          healthcare: {
+            trend: `Healthcare AI in ${country} is transforming patient care, diagnostics, and operational efficiency. Telemedicine and AI-powered diagnostics are seeing 40%+ annual growth.`,
+            marketSize: isSmme ? '$2.5B' : '$15B',
+            keyDrivers: 'Patient data analytics, automated diagnostics, and operational efficiency',
+            urgency: 'High - Healthcare providers adopting AI are seeing 30% cost reductions'
+          },
+          finance: {
+            trend: `Financial services in ${country} are rapidly adopting AI for fraud detection, customer service, and risk assessment. Digital banking transformation is accelerating.`,
+            marketSize: isSmme ? '$3.8B' : '$22B',
+            keyDrivers: 'Fraud prevention, automated compliance, and personalized banking',
+            urgency: 'Critical - 65% of financial institutions have active AI initiatives'
+          },
+          retail: {
+            trend: `Retail sector in ${country} is leveraging AI for inventory optimization, personalized marketing, and customer experience. E-commerce integration is driving adoption.`,
+            marketSize: isSmme ? '$1.8B' : '$12B',
+            keyDrivers: 'Inventory management, customer personalization, and demand forecasting',
+            urgency: 'High - Retailers with AI see 25% improvement in inventory turnover'
+          },
+          technology: {
+            trend: `Technology sector in ${country} is at the forefront of AI adoption, with companies integrating AI into products, services, and operations.`,
+            marketSize: isSmme ? '$4.2B' : '$28B',
+            keyDrivers: 'Product innovation, automation, and competitive differentiation',
+            urgency: 'Critical - AI is becoming table stakes for tech companies'
+          },
+          manufacturing: {
+            trend: `Manufacturing in ${country} is embracing Industry 4.0 with AI-powered predictive maintenance, quality control, and supply chain optimization.`,
+            marketSize: isSmme ? '$2.2B' : '$18B',
+            keyDrivers: 'Predictive maintenance, quality assurance, and production optimization',
+            urgency: 'High - Smart factories showing 35% efficiency gains'
+          },
+          education: {
+            trend: `Education sector in ${country} is adopting AI for personalized learning, administrative automation, and student support services.`,
+            marketSize: isSmme ? '$1.2B' : '$8B',
+            keyDrivers: 'Personalized learning, administrative efficiency, and student engagement',
+            urgency: 'Medium - Growing adoption in progressive institutions'
+          }
+        };
+        return insights[baseIndustry] || insights.technology;
+      };
+
+      const industryInsight = getIndustryInsights(companyInfo.industry, companyInfo.country);
+      const currentYear = new Date().getFullYear();
+      const targetYear = currentYear + 2;
+      
       // Generate country-specific fallback data
       reportData = {
         executiveSummary: {
-          globalTrends: `AI adoption in ${companyInfo.country} is accelerating rapidly with strong government and private sector investment`,
-          marketSize: "$500 billion globally by 2025",
-          growthProjection: "35% CAGR through 2030",
-          regionalMarketSize: `Estimated $${Math.floor(Math.random() * 50 + 20)}B in ${companyInfo.country} by 2025`,
-          regionalGrowthRate: `${Math.floor(Math.random() * 15 + 25)}% CAGR`,
-          regionalCompetitorCount: `${Math.floor(Math.random() * 20 + 10)}+ active competitors in ${companyInfo.country}`
+          globalTrends: industryInsight.trend,
+          marketSize: `${industryInsight.marketSize} in ${companyInfo.country} by ${targetYear}`,
+          growthProjection: `${Math.floor(Math.random() * 15 + 25)}% CAGR through ${targetYear + 3}`,
+          regionalMarketSize: `${industryInsight.marketSize} projected market size by ${targetYear}`,
+          regionalGrowthRate: `${Math.floor(Math.random() * 15 + 25)}% annual growth`,
+          regionalCompetitorCount: `${Math.floor(Math.random() * 20 + 10)}+ active AI adopters in ${companyInfo.country}`,
+          keyDrivers: industryInsight.keyDrivers,
+          urgency: industryInsight.urgency,
+          disclaimer: `Note: Competitor names shown are representative examples of typical ${companyInfo.industry} businesses at various AI maturity levels. Use these as benchmarks for the types of AI initiatives being adopted in your industry.`
         },
         industryLeaders: [
           {
