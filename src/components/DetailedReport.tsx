@@ -207,18 +207,20 @@ For detailed implementation guidance, contact our AI transformation consultants.
             <Button 
               onClick={handleDownloadReport} 
               disabled={downloading}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700"
+              title="Download professional Word document (.docx)"
             >
               <Download className="w-4 h-4" />
-              {downloading ? 'Generating...' : 'Download Report (Word)'}
+              {downloading ? 'Generating Word Document...' : 'Download Word Document'}
             </Button>
             <Button 
               onClick={handleDownloadTextReport} 
               variant="outline"
               className="flex items-center gap-2"
+              title="Download plain text file (.txt)"
             >
               <FileText className="w-4 h-4" />
-              Download (Text)
+              Download Text File
             </Button>
             {reportDownloaded && (
               <Button 
@@ -912,19 +914,21 @@ For detailed implementation guidance, contact our AI transformation consultants.
                     onClick={handleDownloadReport} 
                     disabled={downloading}
                     size="lg" 
-                    className="flex items-center gap-2"
+                    className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700"
+                    title="Download professional Word document (.docx)"
                   >
                     <Download className="w-5 h-5" />
-                    {downloading ? 'Generating Report...' : 'Download Report (Word)'}
+                    {downloading ? 'Generating Word Document...' : 'Download Word Document (.docx)'}
                   </Button>
                   <Button 
                     onClick={handleDownloadTextReport}
                     variant="outline" 
                     size="lg" 
                     className="flex items-center gap-2"
+                    title="Download plain text file (.txt)"
                   >
                     <FileText className="w-5 h-5" />
-                    Download (Text)
+                    Download Text File (.txt)
                   </Button>
                 </div>
               </div>
