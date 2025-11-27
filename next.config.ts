@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "standalone",
+  // Only use standalone for local production builds, not for Netlify
+  output: process.env.NETLIFY ? undefined : "standalone",
   /* config options here */
   typescript: {
     ignoreBuildErrors: true,

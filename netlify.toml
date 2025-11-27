@@ -2,10 +2,10 @@
 # https://docs.netlify.com/configure-builds/file-based-configuration/
 
 [build]
-  # Build command - simplified for Netlify
-  command = "next build"
+  # Build command
+  command = "npm run build"
   
-  # Publish directory
+  # Publish directory - Next.js output
   publish = ".next"
 
 [build.environment]
@@ -14,6 +14,10 @@
   
   # Skip Puppeteer download (Netlify will provide it)
   PUPPETEER_SKIP_DOWNLOAD = "true"
+
+# Essential Next.js Plugin (MUST be first)
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
 
 # Lighthouse Plugin Configuration
 [[plugins]]
