@@ -1,0 +1,77 @@
+# Netlify Configuration File
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  # Build command
+  command = "npm run build"
+  
+  # Publish directory
+  publish = ".next"
+  
+  # Functions directory (for serverless functions)
+  functions = "netlify/functions"
+
+[build.environment]
+  # Node version
+  NODE_VERSION = "18"
+  
+  # Skip Puppeteer download (Netlify will provide it)
+  PUPPETEER_SKIP_DOWNLOAD = "true"
+
+# Lighthouse Plugin Configuration
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+  
+  # Lighthouse plugin options
+  [plugins.inputs]
+    # Run Lighthouse on these paths
+    output_path = "lighthouse-reports"
+    
+    # Lighthouse configuration
+    [plugins.inputs.thresholds]
+      performance = 0.7
+      accessibility = 0.9
+      best-practices = 0.8
+      seo = 0.9
+      
+    # Audit specific pages
+    [plugins.inputs.audits]
+      # Home page
+      [[plugins.inputs.audits.pages]]
+        path = "/"
+        
+      # Assessment page
+      [[plugins.inputs.audits.pages]]
+        path = "/assessment"
+        
+      # Reports page
+      [[plugins.inputs.audits.pages]]
+        path = "/reports"
+
+# Redirect rules
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# Headers for security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Next.js specific configuration
+[[redirects]]
+  from = "/_next/static/*"
+  to = "/_next/static/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/_next/image*"
+  to = "/_next/image*"
+  status = 200
+  force = true

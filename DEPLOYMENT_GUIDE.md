@@ -101,7 +101,7 @@ npx prisma studio
 
 ### Step 5: Run Development Server
 
-```bash
+```bashnpm
 # Start the development server
 npm run dev
 
