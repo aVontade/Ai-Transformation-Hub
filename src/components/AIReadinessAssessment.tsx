@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Progress } from '@/components/ui/progress';
 import { ArrowLeft, ArrowRight, Brain, TrendingUp, Globe, Target, Shield, Zap } from 'lucide-react';
+import { generateWordReport } from '@/lib/generateWordReport';
 
 interface Question {
   id: string;
@@ -215,90 +216,22 @@ export default function AIReadinessAssessment({ onBack }: { onBack: () => void }
     setIsSubmitting(false);
   };
 
-  const handleDownloadReport = () => {
-    // Create a formatted text report
-    const reportContent = `
-AI TRANSFORMATION COMPETITIVE INTELLIGENCE REPORT
-================================================
-
-COMPANY INFORMATION
------------------
-Industry: ${companyInfo?.industry || 'N/A'}
-Country: ${companyInfo?.country || 'N/A'}
-Website: ${companyInfo?.companyUrl || 'N/A'}
-Generated: ${new Date().toLocaleDateString()}
-
-EXECUTIVE SUMMARY
-------------------
-Overall AI Readiness Score: ${calculateOverallScore()}%
-Risk Level: ${calculateOverallScore() >= 75 ? 'Low' : calculateOverallScore() >= 50 ? 'Medium' : 'High'}
-
-Market Size: ${reportData?.executiveSummary?.marketSize || '$500B by 2025'}
-Growth Projection: ${reportData?.executiveSummary?.growthProjection || '35% CAGR through 2030'}
-Global Trends: ${reportData?.executiveSummary?.globalTrends || 'Global AI adoption accelerating across all industries'}
-
-COMPETITIVE LANDSCAPE ANALYSIS
-------------------------------
-${reportData?.competitorAnalysis?.map((competitor: any, index: number) => `
-Competitor ${index + 1}: ${competitor.name}
-Region: ${competitor.region}
-AI Maturity: ${competitor.aiMaturity} (${competitor.aiMaturityScore}%)
-Threat Level: ${competitor.threatLevel}
-Key Initiatives: ${competitor.initiatives?.join(', ')}
-`).join('')}
-
-TOP AI ADOPTERS IN ${companyInfo?.industry?.toUpperCase() || 'INDUSTRY'}
----------------------------------------------------
-${reportData?.industryLeaders?.map((leader: any, index: number) => `
-${index + 1}. ${leader.name}
-   AI Investment: ${leader.aiInvestment}
-   ROI Increase: ${leader.roiIncrease}
-   Efficiency Gain: ${leader.efficiencyGain}
-   Market Cap Impact: ${leader.marketCapImpact}
-   Key Initiatives: ${leader.initiatives?.join(', ')}
-`).join('')}
-
-MARKET OPPORTUNITIES
---------------------
-${reportData?.opportunities?.map((opportunity: any, index: number) => `
-${index + 1}. ${opportunity.title}
-   Description: ${opportunity.description}
-   Impact: ${opportunity.impact}
-   Timeline: ${opportunity.timeline}
-   Required Investment: ${opportunity.investment}
-`).join('')}
-
-STRATEGIC RECOMMENDATIONS
--------------------------
-${reportData?.recommendations?.map((rec: any, index: number) => `
-${index + 1}. ${rec.title}
-   Description: ${rec.description}
-   Priority: ${rec.priority}
-   Expected ROI: ${rec.expectedRoi}
-   Implementation Timeline: ${rec.timeline}
-`).join('')}
-
-NEXT STEPS
------------
-1. Schedule executive strategy session
-2. Allocate budget for AI initiatives
-3. Form cross-functional AI task force
-4. Begin pilot projects in high-impact areas
-5. Establish AI governance framework
-
-For detailed implementation guidance, contact our AI transformation consultants.
-`;
-
-    // Create and download file
-    const blob = new Blob([reportContent], { type: 'text/plain' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `AI-Competitive-Intelligence-Report-${new Date().toISOString().split('T')[0]}.txt`;
-    document.body.appendChild(a);
-    a.click();
-    window.URL.revokeObjectURL(url);
-    document.body.removeChild(a);
+  const handleDownloadReport = async () => {
+    try {
+      console.log('Downloading report from assessment page...');
+      console.log('Report data:', reportData);
+      console.log('Company info:', companyInfo);
+      
+      const assessmentScore = calculateOverallScore();
+      
+      // Generate professional Word document
+      await generateWordReport(reportData, companyInfo, assessmentScore);
+      
+      console.log('Word report generated successfully from assessment page');
+    } catch (error) {
+      console.error('Error generating Word report:', error);
+      alert(`Failed to generate Word report: ${error instanceof Error ? error.message : 'Unknown error'}. Please try again.`);
+    }
   };
 
   const handleBookingSubmit = async () => {
