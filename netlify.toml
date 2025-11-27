@@ -2,14 +2,11 @@
 # https://docs.netlify.com/configure-builds/file-based-configuration/
 
 [build]
-  # Build command
-  command = "npm run build"
+  # Build command - simplified for Netlify
+  command = "next build"
   
   # Publish directory
   publish = ".next"
-  
-  # Functions directory (for serverless functions)
-  functions = "netlify/functions"
 
 [build.environment]
   # Node version
@@ -48,12 +45,6 @@
       [[plugins.inputs.audits.pages]]
         path = "/reports"
 
-# Redirect rules
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
-
 # Headers for security
 [[headers]]
   for = "/*"
@@ -62,16 +53,3 @@
     X-Content-Type-Options = "nosniff"
     X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
-
-# Next.js specific configuration
-[[redirects]]
-  from = "/_next/static/*"
-  to = "/_next/static/:splat"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/_next/image*"
-  to = "/_next/image*"
-  status = 200
-  force = true

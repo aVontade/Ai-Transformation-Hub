@@ -42,8 +42,8 @@ export default function ConsultationBooking({
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    company: companyInfo.companyUrl ? new URL(companyInfo.companyUrl).hostname : '',
-    industry: companyInfo.industry || '',
+    company: companyInfo?.companyUrl ? new URL(companyInfo.companyUrl).hostname : '',
+    industry: companyInfo?.industry || '',
     phone: '',
     jobTitle: '',
     consultationType: 'Strategy',
@@ -97,7 +97,7 @@ export default function ConsultationBooking({
           ...formData,
           assessmentScore,
           reportGenerated: true,
-          companyUrl: companyInfo.companyUrl
+          companyUrl: companyInfo?.companyUrl || ''
         }),
       });
 
@@ -211,10 +211,12 @@ export default function ConsultationBooking({
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  <div className="flex justify-between">
-                    <span className="text-sm text-slate-600">Industry:</span>
-                    <Badge variant="secondary">{companyInfo.industry}</Badge>
-                  </div>
+                  {companyInfo?.industry && (
+                    <div className="flex justify-between">
+                      <span className="text-sm text-slate-600">Industry:</span>
+                      <Badge variant="secondary">{companyInfo.industry}</Badge>
+                    </div>
+                  )}
                   <div className="flex justify-between">
                     <span className="text-sm text-slate-600">AI Readiness:</span>
                     <Badge className={assessmentScore >= 75 ? 'bg-green-100 text-green-800' : assessmentScore >= 50 ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800'}>
