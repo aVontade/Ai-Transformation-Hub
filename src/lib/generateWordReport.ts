@@ -2,6 +2,9 @@ import { Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType, Tabl
 import { saveAs } from 'file-saver';
 
 export async function generateWordReport(reportData: any, companyInfo: any, assessmentScore: number) {
+  console.log('generateWordReport called');
+  console.log('Creating document...');
+  
   const doc = new Document({
     sections: [{
       properties: {},
@@ -143,9 +146,15 @@ export async function generateWordReport(reportData: any, companyInfo: any, asse
   });
 
   // Generate and download
+  console.log('Converting document to blob...');
   const blob = await Packer.toBlob(doc);
+  console.log('Blob created, size:', blob.size);
+  
   const fileName = `AI-Transformation-Report-${companyInfo?.industry || 'Assessment'}-${new Date().toISOString().split('T')[0]}.docx`;
+  console.log('Saving file as:', fileName);
+  
   saveAs(blob, fileName);
+  console.log('File save triggered');
 }
 
 function createInfoTable(data: string[][]): Table {

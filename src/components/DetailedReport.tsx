@@ -40,11 +40,18 @@ export default function DetailedReport({ reportData, companyInfo, assessmentScor
   const handleDownloadReport = async () => {
     try {
       setDownloading(true);
+      console.log('Starting Word report generation...');
+      console.log('Report data:', reportData);
+      console.log('Company info:', companyInfo);
+      
       await generateWordReport(reportData, companyInfo, assessmentScore);
+      
+      console.log('Word report generated successfully!');
       setReportDownloaded(true);
     } catch (error) {
-      console.error('Error generating report:', error);
-      alert('Failed to generate report. Please try again.');
+      console.error('Error generating Word report:', error);
+      console.error('Error details:', error instanceof Error ? error.message : 'Unknown error');
+      alert(`Failed to generate Word report: ${error instanceof Error ? error.message : 'Unknown error'}. Please try the text version instead.`);
     } finally {
       setDownloading(false);
     }
