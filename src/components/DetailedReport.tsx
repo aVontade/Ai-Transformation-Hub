@@ -23,6 +23,7 @@ import {
   CheckCircle
 } from 'lucide-react';
 import ConsultationBooking from './ConsultationBooking';
+import { generateWordReport } from '@/lib/generateWordReport';
 
 interface DetailedReportProps {
   reportData: any;
@@ -34,9 +35,23 @@ interface DetailedReportProps {
 export default function DetailedReport({ reportData, companyInfo, assessmentScore, onBack }: DetailedReportProps) {
   const [showBooking, setShowBooking] = useState(false);
   const [reportDownloaded, setReportDownloaded] = useState(false);
+  const [downloading, setDownloading] = useState(false);
 
-  const handleDownloadReport = () => {
-    // Create a formatted text report
+  const handleDownloadReport = async () => {
+    try {
+      setDownloading(true);
+      await generateWordReport(reportData, companyInfo, assessmentScore);
+      setReportDownloaded(true);
+    } catch (error) {
+      console.error('Error generating report:', error);
+      alert('Failed to generate report. Please try again.');
+    } finally {
+      setDownloading(false);
+    }
+  };
+
+  const handleDownloadTextReport = () => {
+    // Create a formatted text report (backup option)
     const reportContent = `
 AI TRANSFORMATION COMPETITIVE INTELLIGENCE REPORT
 ================================================
@@ -182,9 +197,21 @@ For detailed implementation guidance, contact our AI transformation consultants.
             </p>
           </div>
           <div className="flex gap-3">
-            <Button onClick={handleDownloadReport} className="flex items-center gap-2">
+            <Button 
+              onClick={handleDownloadReport} 
+              disabled={downloading}
+              className="flex items-center gap-2"
+            >
               <Download className="w-4 h-4" />
-              Download Report
+              {downloading ? 'Generating...' : 'Download Report (Word)'}
+            </Button>
+            <Button 
+              onClick={handleDownloadTextReport} 
+              variant="outline"
+              className="flex items-center gap-2"
+            >
+              <FileText className="w-4 h-4" />
+              Download (Text)
             </Button>
             {reportDownloaded && (
               <Button 
@@ -874,13 +901,23 @@ For detailed implementation guidance, contact our AI transformation consultants.
                   Get personalized guidance to implement your competitive intelligence insights and accelerate your AI transformation journey.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button onClick={handleDownloadReport} size="lg" className="flex items-center gap-2">
+                  <Button 
+                    onClick={handleDownloadReport} 
+                    disabled={downloading}
+                    size="lg" 
+                    className="flex items-center gap-2"
+                  >
                     <Download className="w-5 h-5" />
-                    Download Free Report
+                    {downloading ? 'Generating Report...' : 'Download Report (Word)'}
                   </Button>
-                  <Button variant="outline" size="lg" disabled>
-                    <Calendar className="w-5 h-5 mr-2" />
-                    Schedule Consultation (Download report first)
+                  <Button 
+                    onClick={handleDownloadTextReport}
+                    variant="outline" 
+                    size="lg" 
+                    className="flex items-center gap-2"
+                  >
+                    <FileText className="w-5 h-5" />
+                    Download (Text)
                   </Button>
                 </div>
               </div>
